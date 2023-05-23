@@ -1,5 +1,6 @@
 package com.iso.carrepair.service;
 
+import com.google.gson.Gson;
 import com.iso.carrepair.exception.CarNotFoundException;
 import com.iso.carrepair.repository.Car;
 import com.iso.carrepair.repository.CarColor;
@@ -18,17 +19,22 @@ import java.util.stream.Collectors;
 
 @Service
 public class CarService {
+    private final Gson gson = new Gson();
     private List<Car> carList;
     public List<Car> carsForTest(){
-        carList.add(new Car("DWR 1565C", "Volvo", CarColor.BRĄZOWY, 2010,LocalDate.now(),LocalDate.now().plusWeeks(2l),false));
+        carList.add(new Car("DWR 1565C", "Volvo", CarColor.BRĄZOWY, 2010,LocalDate.now().toString(),LocalDate.now().plusWeeks(2l).toString(),false));
         return carList;
     }
 
     public CarService( FileService fileService) {
         carList = new ArrayList<Car>(fileService.readCarFromJsonFile().getCars().values());
     }
+    public List<Car> allCars(){
+        return carList;
+    }
 
     public List<Car> getCarToFixList(){
+        carsForTest();
         return carList.stream()
                 .filter(car -> car.isStatus()==false)
                 .collect(Collectors.toList());
@@ -55,15 +61,8 @@ public class CarService {
                 .orElseThrow(() -> new CarNotFoundException("Not found car with ID: %s".formatted(id)));
     }
     private static final String pathUsersFile = "CarRepair/src/main/java/com/iso/carrepair/database/car.json";
-    public void saveCarToJson(List<Car> cars) throws IOException {
-        try {
-            JSONArray jsonArray = new JSONArray(carList.toArray());
-            FileWriter writer = new FileWriter(new File(pathUsersFile));
-            writer.write(jsonArray.toString());
-            writer.close();
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
-
+    public void saveCarToJson(final Car car) throws IOException {
+        FileWriter writer = new FileWriter(new File(pathUsersFile));
+        gson.toJson(car,writer);
     }
 }

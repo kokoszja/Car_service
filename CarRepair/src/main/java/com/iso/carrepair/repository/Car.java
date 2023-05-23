@@ -19,11 +19,11 @@ public class Car {
     @Min(value = 1950)
     @Max(value = 2023)
     private int yearOfproduction;
-    private LocalDate acceptanceForService;
-    private LocalDate repairDate;
+    private String acceptanceForService;
+    private String repairDate;
     private boolean status;
 
-    public Car( String licensePlate, String makeOfCar, CarColor carColor, int yearOfproduction, LocalDate acceptanceForService, LocalDate repairDate, boolean status) {
+    public Car( String licensePlate, String makeOfCar, CarColor carColor, int yearOfproduction, String acceptanceForService, String repairDate, boolean status) {
         this.licensePlate = licensePlate;
         this.makeOfCar = makeOfCar;
         this.carColor = carColor;
@@ -73,19 +73,19 @@ public class Car {
         this.yearOfproduction = yearOfproduction;
     }
 
-    public LocalDate getAcceptanceForService() {
+    public String getAcceptanceForService() {
         return acceptanceForService;
     }
 
-    public void setAcceptanceForService(LocalDate acceptanceForService) {
+    public void setAcceptanceForService(String acceptanceForService) {
         this.acceptanceForService = acceptanceForService;
     }
 
-    public LocalDate getRepairDate() {
+    public String getRepairDate() {
         return repairDate;
     }
 
-    public void setRepairDate(LocalDate repairDate) {
+    public void setRepairDate(String repairDate) {
         this.repairDate = repairDate;
     }
 
