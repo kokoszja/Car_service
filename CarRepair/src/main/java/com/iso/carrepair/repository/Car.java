@@ -23,13 +23,12 @@ public class Car {
     private LocalDate repairDate;
     private boolean status;
 
-    public Car(int id, String licensePlate, String makeOfCar, CarColor carColor, int yearOfproduction, LocalDate acceptanceForService, LocalDate repairDate, boolean status) {
-        this.id = id;
+    public Car( String licensePlate, String makeOfCar, CarColor carColor, int yearOfproduction, LocalDate acceptanceForService, LocalDate repairDate, boolean status) {
         this.licensePlate = licensePlate;
         this.makeOfCar = makeOfCar;
         this.carColor = carColor;
         this.yearOfproduction = yearOfproduction;
-        this.acceptanceForService = LocalDate.now();
+        this.acceptanceForService = acceptanceForService;
         this.repairDate = repairDate;
         this.status = status;
     }

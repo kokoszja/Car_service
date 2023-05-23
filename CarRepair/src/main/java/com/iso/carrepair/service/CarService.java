@@ -3,9 +3,12 @@ package com.iso.carrepair.service;
 import com.iso.carrepair.exception.CarNotFoundException;
 import com.iso.carrepair.repository.Car;
 import com.iso.carrepair.repository.CarColor;
-import com.iso.carrepair.repository.Cars;
 import com.iso.carrepair.repository.FileService;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -13,14 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.iso.carrepair.repository.FileService.gson;
-
+@Service
 public class CarService {
     private List<Car> carList;
-    private FileService fileService;
+    public List<Car> carsForTest(){
+        carList.add(new Car("DWR 1565C", "Volvo", CarColor.BRĄZOWY, 2010,LocalDate.now(),LocalDate.now().plusWeeks(2l),false));
+        return carList;
+    }
 
     public CarService( FileService fileService) {
-        this.fileService = fileService;
         carList = new ArrayList<Car>(fileService.readCarFromJsonFile().getCars().values());
     }
 
@@ -50,11 +54,16 @@ public class CarService {
                 .findFirst()
                 .orElseThrow(() -> new CarNotFoundException("Not found car with ID: %s".formatted(id)));
     }
-    public void saveCarToJson() throws IOException {
-       Car car = new Car(1, "DWR 1565C", "Volvo",CarColor.BRĄZOWY,2020, LocalDate.now(),LocalDate.now().plusWeeks(1l),false);
-       gson.toJson(car,new FileWriter("/home/jakub/Desktop/Projekt/jjdzr8-poprawka/CarRepair/src/main/java/com/iso/carrepair/database/car.json"));
-    }
-    public void mainTest(){
+    private static final String pathUsersFile = "CarRepair/src/main/java/com/iso/carrepair/database/car.json";
+    public void saveCarToJson(List<Car> cars) throws IOException {
+        try {
+            JSONArray jsonArray = new JSONArray(carList.toArray());
+            FileWriter writer = new FileWriter(new File(pathUsersFile));
+            writer.write(jsonArray.toString());
+            writer.close();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
