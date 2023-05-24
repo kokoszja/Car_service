@@ -13,7 +13,7 @@ public class Car {
     @NotBlank
     private String licensePlate;
     @NotBlank
-    private String makeOfCar;
+    private String modelOfCar;
 
     private CarColor carColor;
     @Min(value = 1950)
@@ -23,13 +23,11 @@ public class Car {
     private String repairDate;
     private boolean status;
 
-    public Car( String licensePlate, String makeOfCar, CarColor carColor, int yearOfproduction, String acceptanceForService, String repairDate, boolean status) {
+    public Car( String licensePlate, String modelOfCar, CarColor carColor, int yearOfproduction, String acceptanceForService, boolean status) {
         this.licensePlate = licensePlate;
-        this.makeOfCar = makeOfCar;
+        this.modelOfCar = modelOfCar;
         this.carColor = carColor;
         this.yearOfproduction = yearOfproduction;
-        this.acceptanceForService = acceptanceForService;
-        this.repairDate = repairDate;
         this.status = status;
     }
 
@@ -50,11 +48,11 @@ public class Car {
     }
 
     public String getMakeOfCar() {
-        return makeOfCar;
+        return modelOfCar;
     }
 
     public void setMakeOfCar(String makeOfCar) {
-        this.makeOfCar = makeOfCar;
+        this.modelOfCar = makeOfCar;
     }
 
     public CarColor getCarColor() {
@@ -102,19 +100,19 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return id == car.id && yearOfproduction == car.yearOfproduction && status == car.status && Objects.equals(licensePlate, car.licensePlate) && Objects.equals(makeOfCar, car.makeOfCar) && carColor == car.carColor && Objects.equals(acceptanceForService, car.acceptanceForService) && Objects.equals(repairDate, car.repairDate);
+        return id == car.id && yearOfproduction == car.yearOfproduction && status == car.status && Objects.equals(licensePlate, car.licensePlate) && Objects.equals(modelOfCar, car.modelOfCar) && carColor == car.carColor && Objects.equals(acceptanceForService, car.acceptanceForService) && Objects.equals(repairDate, car.repairDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, licensePlate, makeOfCar, carColor, yearOfproduction, acceptanceForService, repairDate, status);
+        return Objects.hash(id, licensePlate, modelOfCar, carColor, yearOfproduction, acceptanceForService, repairDate, status);
     }
 
     @Override
     public String toString() {
         return "Car{" +
                 "licensePlate='" + licensePlate + '\'' +
-                ", makeOfCar='" + makeOfCar + '\'' +
+                ", makeOfCar='" + modelOfCar + '\'' +
                 ", carColor=" + carColor +
                 '}';
     }

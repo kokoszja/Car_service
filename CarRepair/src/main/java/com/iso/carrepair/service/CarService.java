@@ -4,9 +4,7 @@ import com.google.gson.Gson;
 import com.iso.carrepair.exception.CarNotFoundException;
 import com.iso.carrepair.repository.Car;
 import com.iso.carrepair.repository.CarColor;
-import com.iso.carrepair.repository.FileService;
-import org.json.JSONArray;
-import org.json.JSONException;
+import com.iso.carrepair.repository.Cars;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -20,6 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class CarService {
     private final Gson gson = new Gson();
+    private FileService fileService;
     private List<Car> carList;
     public List<Car> carsForTest(){
         carList.add(new Car("DWR 1565C", "Volvo", CarColor.BRĄZOWY, 2010,LocalDate.now().toString(),LocalDate.now().plusWeeks(2l).toString(),false));
@@ -27,7 +26,9 @@ public class CarService {
     }
 
     public CarService( FileService fileService) {
-        carList = new ArrayList<Car>(fileService.readCarFromJsonFile().getCars().values());
+        this.fileService = fileService;
+        List<Car> cars = fileService.readCarFromJsonFile().getCars();
+        carList = cars;
     }
     public List<Car> allCars(){
         return carList;
@@ -50,8 +51,15 @@ public class CarService {
     }
 
     public void removeCarById(long id){
-    Car foundCar = findCarById(id);
-    carList.remove(foundCar);
+        Car foundCar = findCarById(id);
+        carList.remove(foundCar);
+    }
+    public void saveCarToJson() throws IOException {
+        Cars carsCopy = new Cars();
+        for (Car car : carList){
+            carsCopy.addCar(car);
+        }
+        fileService.writeCarToJson(carsCopy);
     }
 
     public Car findCarById(long id) {

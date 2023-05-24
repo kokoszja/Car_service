@@ -1,12 +1,11 @@
-package com.iso.carrepair.repository;
+package com.iso.carrepair.service;
 
 import com.google.gson.Gson;
+import com.iso.carrepair.repository.Car;
+import com.iso.carrepair.repository.Cars;
 import org.springframework.stereotype.Service;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.util.Objects;
@@ -15,12 +14,9 @@ import java.util.Objects;
 public class FileService {
     private static final Path pathCarJsonFile = Path.of("CarRepair/src/main/java/com/iso/carrepair/database/car.json");
     public static final Gson gson = new Gson();
-    public void writeToJsonFile ( Car car){
-        try {
-            gson.toJson(car,new FileWriter("CarRepair/src/main/java/com/iso/carrepair/database/car.json"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void writeCarToJson(final Cars cars) throws IOException {
+        FileWriter writer = new FileWriter(new File(pathCarJsonFile.toString()));
+        gson.toJson(cars,writer);
     }
     private <T> T readDataFromJsonFile(Class<T> dataType, Path path) {
         try (Reader reader = new FileReader(path.toFile())) {
