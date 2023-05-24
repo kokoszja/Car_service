@@ -19,5 +19,6 @@ public class Cars {
     }
     public void addCar(Car car){
         cars.add(car);
+        System.out.println("Nowe auto dodane: " + car.toString());
     }
 }

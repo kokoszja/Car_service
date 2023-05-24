@@ -17,6 +17,7 @@ public class FileService {
     public void writeCarToJson(final Cars cars) throws IOException {
         FileWriter writer = new FileWriter(new File(pathCarJsonFile.toString()));
         gson.toJson(cars,writer);
+        System.out.println("Zapisano w: " + pathCarJsonFile);
     }
     private <T> T readDataFromJsonFile(Class<T> dataType, Path path) {
         try (Reader reader = new FileReader(path.toFile())) {

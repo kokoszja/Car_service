@@ -21,7 +21,7 @@ public class CarService {
     private FileService fileService;
     private List<Car> carList;
     public List<Car> carsForTest(){
-        carList.add(new Car("DWR 1565C", "Volvo", CarColor.BRĄZOWY, 2010,LocalDate.now().toString(),LocalDate.now().plusWeeks(2l).toString(),false));
+        carList.add(new Car("DWR 1565C", "Volvo", CarColor.BRĄZOWY, 2010,LocalDate.now().toString(),false));
         return carList;
     }
 
@@ -47,6 +47,7 @@ public class CarService {
     }
 
     public void addCar (Car car){
+        car.setAcceptanceForService(LocalDate.now().toString());
         carList.add(car);
     }
 
