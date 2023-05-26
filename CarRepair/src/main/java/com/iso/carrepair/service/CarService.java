@@ -20,22 +20,24 @@ public class CarService {
     private final Gson gson = new Gson();
     private FileService fileService;
     private List<Car> carList;
-    public List<Car> carsForTest(){
-        carList.add(new Car("DWR 1565C", "Volvo", CarColor.BRĄZOWY, 2010,LocalDate.now().toString(),false));
-        return carList;
-    }
+//    public List<Car> carsForTest(){
+//        this.carList = new ArrayList<>();
+//        carList.add(new Car("DWR 1565C", "Volvo", CarColor.BRĄZOWY, 2010,LocalDate.now().toString(),false));
+//        carList.add(new Car("DWR 1565C", "Volvo", CarColor.BRĄZOWY, 2010,LocalDate.now().toString(),false));
+//        return carList;
+//    }
 
     public CarService( FileService fileService) {
         this.fileService = fileService;
-        List<Car> cars = fileService.readCarFromJsonFile().getCars();
-        carList = cars;
+        this.carList = new ArrayList<>();
+        carList.add(new Car("DWR 1565C", "Volvo", CarColor.BRĄZOWY, 2010,LocalDate.now().toString(),false));
+        carList.add(new Car("DWR 1565C", "Volvo", CarColor.BRĄZOWY, 2010,LocalDate.now().toString(),false));
     }
     public List<Car> allCars(){
         return carList;
     }
 
     public List<Car> getCarToFixList(){
-        carsForTest();
         return carList.stream()
                 .filter(car -> car.isStatus()==false)
                 .collect(Collectors.toList());
@@ -47,7 +49,6 @@ public class CarService {
     }
 
     public void addCar (Car car){
-        car.setAcceptanceForService(LocalDate.now().toString());
         carList.add(car);
     }
 
@@ -60,7 +61,7 @@ public class CarService {
         for (Car car : carList){
             carsCopy.addCar(car);
         }
-        fileService.writeCarToJson(carsCopy);
+//        fileService.writeCarToJson(carsCopy);
     }
 
     public Car findCarById(long id) {
@@ -68,10 +69,5 @@ public class CarService {
                 .filter(car -> car.getId()==id)
                 .findFirst()
                 .orElseThrow(() -> new CarNotFoundException("Not found car with ID: %s".formatted(id)));
-    }
-    private static final String pathUsersFile = "CarRepair/src/main/java/com/iso/carrepair/database/car.json";
-    public void saveCarToJson(final Car car) throws IOException {
-        FileWriter writer = new FileWriter(new File(pathUsersFile));
-        gson.toJson(car,writer);
     }
 }

@@ -14,13 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.swing.plaf.PanelUI;
 import javax.validation.Valid;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/cars")
@@ -35,6 +32,7 @@ public class CarControtoller {
         this.fileService = fileService;
         this.carService = carService;
         this.cars = cars;
+        this.carList = carService.allCars();
     }
     @GetMapping()
     public String carsMenu(){
@@ -43,32 +41,29 @@ public class CarControtoller {
 
     @GetMapping("/toBeFixed")
     public String carsToBeFixed (Model model) throws IOException {
-        model.addAttribute("cars", carService.carsForTest());
+        model.addAttribute("cars", carService.allCars());
 //        model.addAttribute("cars", carService.allCars());
         return "cars/carsToBeFixed";
     }
-    @GetMapping("/toBeFixed/create")
+    @GetMapping("/toBeFixed/addCar")
     public String createCarTable (Model model){
         model.addAttribute("cars", new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
-        return "cars/create";
+        return "cars/addCar";
     }
     @PostMapping("/toBeFixed")
-    public String addCar (@Valid @ModelAttribute Car car, BindingResult bindingResult){
+    public String addCar (@Valid @ModelAttribute Car car, BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()){
-            return "cars/create";
+            return "cars/carsToBeFixed";
         }
-        carService.addCar(car);
-        return "redirect:/cars/toBeFixed";
+        carService.saveCarToJson();
+        return "redirect:/cars/carsToBeFixed";
     }
     @GetMapping("/save")
     public String saveCar() throws IOException {
-//        carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
-//        carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
-//        carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
-        carList = carService.carsForTest();
-        Gson gson = new Gson();
-        gson.toJson(carList, new FileWriter("CarRepair/src/main/java/com/iso/carrepair/database/car.json"));
-//        carService.saveCarToJson();
+        carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
+        carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
+        carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
+        carService.saveCarToJson();
         return "redirect:/cars/toBeFixed";
     }
 }

@@ -15,8 +15,12 @@
             <option th:each="color : ${T(com.iso.carrepair.repository.CarColor).values()}" th:value="${color}" th:text="${color}"/>
         </select>
         </p>
+        <p>Data przyjęcia do serwisu: <input readonly type="text" th:field="*{acceptanceForService}" th:value="${cars.getAcceptanceForService()}" /></p>
         <p>Rok produkcji: <input type="text" th:field="*{yearOfproduction}"/></p>
-        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/><a th:href="@{/cars}"><input type="button" value="Strona główna"></a></p>
+        <p>
+            <input type="submit" value="Submit"/>
+            <input type="reset" value="Reset"/>
+            <a th:href="@{/cars}"><input type="button" value="Strona główna"></a></p>
     </form>
 </div>
 </body>

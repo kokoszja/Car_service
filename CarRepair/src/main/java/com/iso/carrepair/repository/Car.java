@@ -28,6 +28,7 @@ public class Car {
         this.modelOfCar = modelOfCar;
         this.carColor = carColor;
         this.yearOfproduction = yearOfproduction;
+        this.acceptanceForService = acceptanceForService;
         this.status = status;
     }
 
