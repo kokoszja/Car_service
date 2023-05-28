@@ -3,25 +3,79 @@
     {
       "id": 0,
       "licensePlate": "DWR 1565C",
-      "modelOfCar": "Volvo",
+      "modelOfCar": "Volvo C4",
       "carColor": "BRĄZOWY",
       "yearOfproduction": 2010,
-      "acceptanceForService": "2023-05-28",
+      "acceptanceForService": "2023-05-20",
       "status": false
     },
     {
       "id": 0,
-      "licensePlate": "DWR 1565C",
-      "modelOfCar": "Volvo",
-      "carColor": "BRĄZOWY",
+      "licensePlate": "DWR 1665D",
+      "modelOfCar": "Kia Ceed",
+      "carColor": "SREBRNY",
+      "yearOfproduction": 2020,
+      "acceptanceForService": "2023-04-02",
+      "status": false
+    },
+    {
+      "id": 0,
+      "licensePlate": "DWR 1565E",
+      "modelOfCar": "VOLKSWAGEN T-ROC",
+      "carColor": "SREBRNY",
+      "yearOfproduction": 2024,
+      "acceptanceForService": "2023-02-27",
+      "status": false
+    },
+    {
+      "id": 0,
+      "licensePlate": "DWR 1245C",
+      "modelOfCar": "CITROEN C4",
+      "carColor": "NIEBIESKI",
       "yearOfproduction": 2010,
-      "acceptanceForService": "2023-05-28",
+      "acceptanceForService": "2023-04-26",
       "status": false
     },
     {
       "id": 0,
-      "licensePlate": "Tablica",
-      "modelOfCar": "Volvo",
+      "licensePlate": "DWR 1245T",
+      "modelOfCar": "TOYOTA COROLLA",
+      "carColor": "BIAŁY",
+      "yearOfproduction": 2020,
+      "acceptanceForService": "2023-05-16",
+      "status": false
+    },
+    {
+      "id": 0,
+      "licensePlate": "DWR 1565E",
+      "modelOfCar": "MAZDA R8",
+      "carColor": "CZERWONY",
+      "yearOfproduction": 2024,
+      "acceptanceForService": "2023-05-27",
+      "status": false
+    },
+    {
+      "id": 0,
+      "licensePlate": "DW 1667U",
+      "modelOfCar": "BMW E4",
+      "carColor": "ZIELONY",
+      "yearOfproduction": 2011,
+      "acceptanceForService": "2023-05-14",
+      "status": false
+    },
+    {
+      "id": 0,
+      "licensePlate": "pwr 4457u",
+      "modelOfCar": "AUDI A5",
+      "carColor": "SREBRNY",
+      "yearOfproduction": 2011,
+      "acceptanceForService": "2023-05-28",
+      "status": true
+    },
+    {
+      "id": 0,
+      "licensePlate": "Numer tablicy rejestracyjnej",
+      "modelOfCar": "Model samochodu",
       "carColor": "BRĄZOWY",
       "yearOfproduction": 2011,
       "acceptanceForService": "2023-05-28",
@@ -29,8 +83,8 @@
     },
     {
       "id": 0,
-      "licensePlate": "Tablica",
-      "modelOfCar": "Volvo",
+      "licensePlate": "Numer tablicy rejestracyjnej",
+      "modelOfCar": "Model samochodu",
       "carColor": "BRĄZOWY",
       "yearOfproduction": 2011,
       "acceptanceForService": "2023-05-28",
@@ -38,20 +92,11 @@
     },
     {
       "id": 0,
-      "licensePlate": "Tablica",
-      "modelOfCar": "Volvo",
+      "licensePlate": "Numer tablicy rejestracyjnej",
+      "modelOfCar": "Model samochodu",
       "carColor": "BRĄZOWY",
       "yearOfproduction": 2011,
       "acceptanceForService": "2023-05-28",
-      "status": false
-    },
-    {
-      "id": 0,
-      "licensePlate": "Tablica",
-      "modelOfCar": "Volvo",
-      "carColor": "BRĄZOWY",
-      "yearOfproduction": 2022,
-      "acceptanceForService": "2023-06-11",
       "status": false
     }
   ]

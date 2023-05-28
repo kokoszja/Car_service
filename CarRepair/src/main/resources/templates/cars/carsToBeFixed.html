@@ -24,11 +24,11 @@
         <td th:text="${iterStat.count}"></td>
         <td th:text="${car.getLicensePlate()}"></td>
         <td th:text="${car.getMakeOfCar()}"></td>
-        <td th:text="${car.getCarColor().name()}"></td>
+        <td th:text="${car.getCarColor()}"></td>
         <td th:text="${car.getYearOfproduction()}"></td>
         <td th:text="${car.getAcceptanceForService()}"></td>
         <td>
-            <a  class="btn btn-primary">
+            <a th:href="@{/cars/status/{plate}(plate=${car.licensePlate})}" class="btn btn-primary">
                 NAPRAW
             </a>
         </td>
@@ -40,8 +40,9 @@
     <a th:href="@{/cars/toBeFixed/addCar}" class="btn btn-success">
         Dodaj nowy pojazd
     </a>
-    <a th:href="@{/cars/save}" class="btn btn-warning">
-        Zapisz trasy
-    </a></div>
+    <a th:href="@{/cars}" class="btn btn-success">
+        Menu główne
+    </a>
+   </div>
 </body>
 </html>

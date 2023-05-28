@@ -6,13 +6,11 @@ import com.iso.carrepair.repository.CarColor;
 import com.iso.carrepair.repository.Cars;
 import com.iso.carrepair.service.CarService;
 import com.iso.carrepair.service.FileService;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.FileWriter;
@@ -32,7 +30,6 @@ public class CarControtoller {
         this.fileService = fileService;
         this.carService = carService;
         this.cars = cars;
-        this.carList = carService.allCars();
     }
     @GetMapping()
     public String carsMenu(){
@@ -41,32 +38,23 @@ public class CarControtoller {
 
     @GetMapping("/toBeFixed")
     public String carsToBeFixed (Model model) throws IOException {
-        model.addAttribute("cars", carService.allCars());
-//        model.addAttribute("cars", carService.allCars());
+        model.addAttribute("cars", carService.getCarToFixList());
         return "cars/carsToBeFixed";
     }
     @GetMapping("/toBeFixed/addCar")
     public String createCarTable (Model model){
-        model.addAttribute("cars", new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
+        model.addAttribute("cars", new Car("Numer tablicy rejestracyjnej",CarColor.BRĄZOWY.toString(), "Model samochodu", 2011, LocalDate.now().toString(), false));
         return "cars/addCar";
     }
     @PostMapping("/toBeFixed")
-    public String addCar (@Valid @ModelAttribute Car car, BindingResult bindingResult) throws IOException {
-        if (bindingResult.hasErrors()){
-            return "cars/carsToBeFixed";
-        }
-        carService.saveCarToJson();
-        return "redirect:/cars/carsToBeFixed";
-    }
-    @GetMapping("/save")
-    public String saveCar() throws IOException {
-        carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
-        carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
-        carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
-        Car car = new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2022, LocalDate.now().toString(), false);
-        car.setAcceptanceForService(LocalDate.now().plusWeeks(2l).toString());
-        carList.add(car);
+    public String addCar (@Valid @ModelAttribute Car car) throws IOException {
+        carService.addCar(car);
         carService.saveCarToJson();
         return "redirect:/cars/toBeFixed";
+    }
+    @GetMapping("/status/{plate}")
+    public String changeStatus (@PathVariable String plate){
+        carService.editCarStatus(plate);
+        return "redirect:/cars/menu";
     }
 }

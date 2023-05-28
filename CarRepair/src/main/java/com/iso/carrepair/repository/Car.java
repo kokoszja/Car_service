@@ -15,7 +15,7 @@ public class Car {
     @NotBlank
     private String modelOfCar;
 
-    private CarColor carColor;
+    private String carColor;
     @Min(value = 1950)
     @Max(value = 2023)
     private int yearOfproduction;
@@ -23,7 +23,7 @@ public class Car {
     private String repairDate;
     private boolean status;
 
-    public Car( String licensePlate, String modelOfCar, CarColor carColor, int yearOfproduction, String acceptanceForService, boolean status) {
+    public Car( String licensePlate,String carColor, String modelOfCar, int yearOfproduction, String acceptanceForService, boolean status) {
         this.licensePlate = licensePlate;
         this.modelOfCar = modelOfCar;
         this.carColor = carColor;
@@ -56,11 +56,11 @@ public class Car {
         this.modelOfCar = makeOfCar;
     }
 
-    public CarColor getCarColor() {
+    public String getCarColor() {
         return carColor;
     }
 
-    public void setCarColor(CarColor carColor) {
+    public void setCarColor(String carColor) {
         this.carColor = carColor;
     }
 

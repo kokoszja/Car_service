@@ -32,9 +32,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+    </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
