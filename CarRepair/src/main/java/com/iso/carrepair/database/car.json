@@ -1,0 +1,58 @@
+{
+  "cars": [
+    {
+      "id": 0,
+      "licensePlate": "DWR 1565C",
+      "modelOfCar": "Volvo",
+      "carColor": "BRĄZOWY",
+      "yearOfproduction": 2010,
+      "acceptanceForService": "2023-05-28",
+      "status": false
+    },
+    {
+      "id": 0,
+      "licensePlate": "DWR 1565C",
+      "modelOfCar": "Volvo",
+      "carColor": "BRĄZOWY",
+      "yearOfproduction": 2010,
+      "acceptanceForService": "2023-05-28",
+      "status": false
+    },
+    {
+      "id": 0,
+      "licensePlate": "Tablica",
+      "modelOfCar": "Volvo",
+      "carColor": "BRĄZOWY",
+      "yearOfproduction": 2011,
+      "acceptanceForService": "2023-05-28",
+      "status": false
+    },
+    {
+      "id": 0,
+      "licensePlate": "Tablica",
+      "modelOfCar": "Volvo",
+      "carColor": "BRĄZOWY",
+      "yearOfproduction": 2011,
+      "acceptanceForService": "2023-05-28",
+      "status": false
+    },
+    {
+      "id": 0,
+      "licensePlate": "Tablica",
+      "modelOfCar": "Volvo",
+      "carColor": "BRĄZOWY",
+      "yearOfproduction": 2011,
+      "acceptanceForService": "2023-05-28",
+      "status": false
+    },
+    {
+      "id": 0,
+      "licensePlate": "Tablica",
+      "modelOfCar": "Volvo",
+      "carColor": "BRĄZOWY",
+      "yearOfproduction": 2022,
+      "acceptanceForService": "2023-06-11",
+      "status": false
+    }
+  ]
+}

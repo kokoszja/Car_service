@@ -63,6 +63,9 @@ public class CarControtoller {
         carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
         carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
         carList.add(new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2011, LocalDate.now().toString(), false));
+        Car car = new Car("Tablica", "Volvo", CarColor.BRĄZOWY, 2022, LocalDate.now().toString(), false);
+        car.setAcceptanceForService(LocalDate.now().plusWeeks(2l).toString());
+        carList.add(car);
         carService.saveCarToJson();
         return "redirect:/cars/toBeFixed";
     }

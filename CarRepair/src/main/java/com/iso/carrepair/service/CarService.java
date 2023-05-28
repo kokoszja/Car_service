@@ -61,7 +61,7 @@ public class CarService {
         for (Car car : carList){
             carsCopy.addCar(car);
         }
-//        fileService.writeCarToJson(carsCopy);
+        fileService.writeCarToJson(carsCopy);
     }
 
     public Car findCarById(long id) {
