@@ -18,17 +18,18 @@ public class Car {
     private String carColor;
     @Min(value = 1950)
     @Max(value = 2023)
-    private int yearOfproduction;
+    private Integer yearOfproduction;
     private String acceptanceForService;
     private String repairDate;
     private boolean status;
 
-    public Car( String licensePlate,String carColor, String modelOfCar, int yearOfproduction, String acceptanceForService, boolean status) {
+    public Car( String licensePlate,String carColor, String modelOfCar, Integer yearOfproduction, String acceptanceForService,String repairDate, boolean status) {
         this.licensePlate = licensePlate;
         this.modelOfCar = modelOfCar;
         this.carColor = carColor;
         this.yearOfproduction = yearOfproduction;
         this.acceptanceForService = acceptanceForService;
+        this.repairDate = repairDate;
         this.status = status;
     }
 
@@ -64,11 +65,11 @@ public class Car {
         this.carColor = carColor;
     }
 
-    public int getYearOfproduction() {
+    public Integer getYearOfproduction() {
         return yearOfproduction;
     }
 
-    public void setYearOfproduction(int yearOfproduction) {
+    public void setYearOfproduction(Integer yearOfproduction) {
         this.yearOfproduction = yearOfproduction;
     }
 

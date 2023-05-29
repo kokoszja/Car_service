@@ -1,19 +1,15 @@
 package com.iso.carrepair.controller;
 
-import com.google.gson.Gson;
 import com.iso.carrepair.repository.Car;
 import com.iso.carrepair.repository.CarColor;
 import com.iso.carrepair.repository.Cars;
 import com.iso.carrepair.service.CarService;
 import com.iso.carrepair.service.FileService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -43,7 +39,7 @@ public class CarControtoller {
     }
     @GetMapping("/toBeFixed/addCar")
     public String createCarTable (Model model){
-        model.addAttribute("cars", new Car("Numer tablicy rejestracyjnej",CarColor.BRĄZOWY.toString(), "Model samochodu", 2011, LocalDate.now().toString(), false));
+        model.addAttribute("cars", new Car(null ,CarColor.BRĄZOWY.toString(), null, null, LocalDate.now().toString(), null, false));
         return "cars/addCar";
     }
     @PostMapping("/toBeFixed")
@@ -52,9 +48,22 @@ public class CarControtoller {
         carService.saveCarToJson();
         return "redirect:/cars/toBeFixed";
     }
+    @GetMapping("/fixed")
+    public String carFixed (Model model){
+        model.addAttribute("cars", carService.getCarFixedList());
+        return "cars/fixed";
+    }
+    @GetMapping("/find")
+    public String findCar(@RequestParam (required = false) String keyword, Model model){
+        List<Car> car = carService.findCarByPlateList(keyword);
+        model.addAttribute("cars", car);
+        model.addAttribute("keyword", keyword);
+        return "cars/findCar";
+    }
     @GetMapping("/status/{plate}")
-    public String changeStatus (@PathVariable String plate){
-        carService.editCarStatus(plate);
-        return "redirect:/cars/menu";
+    public String changeStatus (@PathVariable String plate) throws IOException {
+        carService.changeStatus(plate);
+        carService.saveCarToJson();
+        return "redirect:/cars/toBeFixed";
     }
 }
