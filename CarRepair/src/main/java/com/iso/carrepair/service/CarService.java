@@ -20,44 +20,54 @@ public class CarService {
     private final Gson gson = new Gson();
     Reader reader = Files.newBufferedReader(Paths.get("CarRepair/src/main/java/com/iso/carrepair/database/car.json"));
     private FileService fileService;
-    private List<Car> carList;
+    private List<Car> carListToBeFix;
+    private List<Car> carListFixed;
 
     public CarService( FileService fileService) throws IOException {
         this.fileService = fileService;
-        this.carList = fileService.readCarFromJsonFile().getCars();
+        this.carListToBeFix = fileService.readCarFromJsonFileToBeFixed().getCars();
     }
 
     public List<Car> getCarToFixList(){
-        return carList.stream()
+        return carListToBeFix.stream()
                 .filter(car -> car.isStatus()==false)
                 .sorted(Comparator.comparing(Car::getAcceptanceForService))
                 .collect(Collectors.toList());
     }
     public List<Car> getCarFixedList() {
-        return carList.stream()
-                .filter(car -> car.isStatus() == true)
+        return carListFixed.stream()
                 .sorted(Comparator.comparing(Car::getRepairDate).reversed())
                 .collect(Collectors.toList());
     }
 
-    public void addCar (Car car){
-        carList.add(car);
+    public void addCarToBeFix(Car car){
+        carListToBeFix.add(car);
     }
-    public void saveCarToJson() throws IOException {
+    public void addCarFixed(Car car){
+        carListFixed.add(car);
+    }
+    public void saveCarToJsonToBeFixed() throws IOException {
         Cars carsCopy = new Cars();
-        for (Car car : carList){
+        for (Car car : carListToBeFix){
             carsCopy.addCar(car);
         }
-        fileService.writeCarToJson(carsCopy);
+        fileService.writeCarToJsonToBeFixed(carsCopy);
+    }
+    public void saveCarToJsonFixed() throws IOException {
+        Cars carsCopy = new Cars();
+        for (Car car : carListFixed){
+            carsCopy.addCar(car);
+        }
+        fileService.writeCarToJsonFixed(carsCopy);
     }
     public List<Car> findCarByPlateList(String test){
-        return carList.stream()
+        return carListToBeFix.stream()
                 .filter(car -> car.getLicensePlate().equals(test))
                 .filter(car -> car.isStatus() == false)
                 .collect(Collectors.toList());
     }
     public Car findCarByPlate(String plate){
-        return carList.stream()
+        return carListToBeFix.stream()
                 .filter(car -> car.getLicensePlate().equals(plate))
                 .findFirst()
                 .orElseThrow(()->new CarNotFoundException("Not found"));
@@ -66,6 +76,9 @@ public class CarService {
         Car foundCar = findCarByPlate(plate);
         foundCar.setStatus(true);
         foundCar.setRepairDate(LocalDate.now().toString());
+        carListFixed.add(foundCar);
+        carListToBeFix.remove(foundCar);
     }
+
 }
 

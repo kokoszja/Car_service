@@ -44,8 +44,8 @@ public class CarControtoller {
     }
     @PostMapping("/toBeFixed")
     public String addCar (@Valid @ModelAttribute Car car) throws IOException {
-        carService.addCar(car);
-        carService.saveCarToJson();
+        carService.addCarToBeFix(car);
+        carService.saveCarToJsonToBeFixed();
         return "redirect:/cars/toBeFixed";
     }
     @GetMapping("/fixed")
@@ -63,7 +63,7 @@ public class CarControtoller {
     @GetMapping("/status/{plate}")
     public String changeStatus (@PathVariable String plate) throws IOException {
         carService.changeStatus(plate);
-        carService.saveCarToJson();
+        carService.saveCarToJsonToBeFixed();
         return "redirect:/cars/toBeFixed";
     }
 }
