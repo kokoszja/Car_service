@@ -66,4 +66,10 @@ public class CarControtoller {
         carService.saveCarToJsonToBeFixed();
         return "redirect:/cars/toBeFixed";
     }
+    @PostMapping("/status/{plate}")
+    public String addCarFixed (@Valid @ModelAttribute Car car, @PathVariable String plate) throws IOException {
+        carService.addCarFixed(car);
+        carService.saveCarToJsonFixed();
+        return "redirect:/cars/toBeFixed";
+    }
 }

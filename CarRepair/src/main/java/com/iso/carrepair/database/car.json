@@ -8,7 +8,7 @@
       "yearOfproduction": 2010,
       "acceptanceForService": "2023-05-20",
       "repairDate": "2023-05-29",
-      "status": true
+      "status": false
     },
     {
       "id": 0,
@@ -28,7 +28,7 @@
       "yearOfproduction": 2024,
       "acceptanceForService": "2023-02-27",
       "repairDate": "2023-05-30",
-      "status": true
+      "status": false
     },
     {
       "id": 0,
@@ -42,51 +42,11 @@
     },
     {
       "id": 0,
-      "licensePlate": "DWR1245T",
-      "modelOfCar": "TOYOTA COROLLA",
-      "carColor": "BIAŁY",
-      "yearOfproduction": 2020,
-      "acceptanceForService": "2023-05-16",
-      "repairDate": "",
-      "status": false
-    },
-    {
-      "id": 0,
-      "licensePlate": "DWR1565G",
-      "modelOfCar": "MAZDA R8",
-      "carColor": "CZERWONY",
-      "yearOfproduction": 2024,
-      "acceptanceForService": "2023-05-27",
-      "repairDate": "",
-      "status": false
-    },
-    {
-      "id": 0,
       "licensePlate": "DW1667U",
       "modelOfCar": "BMW E4",
       "carColor": "ZIELONY",
       "yearOfproduction": 2011,
       "acceptanceForService": "2023-05-14",
-      "repairDate": "",
-      "status": false
-    },
-    {
-      "id": 0,
-      "licensePlate": "PWR4457u",
-      "modelOfCar": "AUDI A5",
-      "carColor": "SREBRNY",
-      "yearOfproduction": 2011,
-      "acceptanceForService": "2023-05-28",
-      "repairDate": "2023-05-29",
-      "status": true
-    },
-    {
-      "id": 0,
-      "licensePlate": "TTR1653A",
-      "modelOfCar": "AUDI A3",
-      "carColor": "CZERWONY",
-      "yearOfproduction": 2010,
-      "acceptanceForService": "2023-05-29",
       "repairDate": "",
       "status": false
     }

@@ -76,7 +76,6 @@ public class CarService {
         Car foundCar = findCarByPlate(plate);
         foundCar.setStatus(true);
         foundCar.setRepairDate(LocalDate.now().toString());
-        carListFixed.add(foundCar);
         carListToBeFix.remove(foundCar);
     }
 
