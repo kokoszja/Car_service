@@ -2,22 +2,22 @@ package com.iso.carrepair.repository;
 
 import org.springframework.lang.NonNull;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Car {
     private long id;
-    @NotBlank
+    @NotEmpty
+    @Size(min = 5)
     private String licensePlate;
-    @NotBlank
+    @NotEmpty
     private String modelOfCar;
 
     private String carColor;
     @Min(value = 1950)
     @Max(value = 2023)
+    @NotEmpty
     private Integer yearOfproduction;
     private String acceptanceForService;
     private String repairDate;

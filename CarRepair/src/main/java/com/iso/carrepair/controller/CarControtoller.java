@@ -7,11 +7,13 @@ import com.iso.carrepair.service.CarService;
 import com.iso.carrepair.service.FileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 @RequestMapping("/cars")
@@ -43,7 +45,10 @@ public class CarControtoller {
         return "cars/addCar";
     }
     @PostMapping("/toBeFixed")
-    public String addCar (@Valid @ModelAttribute Car car) throws IOException {
+    public String addCar (@Valid @ModelAttribute Car car, BindingResult bindingResult) throws IOException {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/cars/toBeFixed/addCar";
+        }
         carService.addCar(car);
         carService.saveCarToJson();
         return "redirect:/cars/toBeFixed";

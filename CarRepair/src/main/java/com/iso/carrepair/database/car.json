@@ -77,8 +77,8 @@
       "carColor": "SREBRNY",
       "yearOfproduction": 2011,
       "acceptanceForService": "2023-05-28",
-      "repairDate": "2023-05-29",
-      "status": true
+      "repairDate": "",
+      "status": false
     },
     {
       "id": 0,
