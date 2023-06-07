@@ -1,13 +1,9 @@
 package com.iso.carrepair.service;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.iso.carrepair.repository.Car;
 import com.iso.carrepair.repository.Cars;
 import org.springframework.stereotype.Service;
-
 import java.io.*;
-import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.util.Objects;
 

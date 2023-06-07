@@ -8,9 +8,6 @@ public class Cars {
     public List<Car> getCars(){
         return cars;
     }
-    public void setCars (List<Car> cars){
-        this.cars = cars;
-    }
     public void addCar(Car car){
         cars.add(car);
         System.out.println("Nowe auto dodane: " + car.toString());

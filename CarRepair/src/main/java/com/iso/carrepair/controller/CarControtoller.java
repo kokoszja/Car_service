@@ -31,7 +31,7 @@ public class CarControtoller {
     }
 
     @GetMapping("/toBeFixed")
-    public String carsToBeFixed (Model model) throws IOException {
+    public String carsToBeFixed (Model model){
         model.addAttribute("cars", carService.getCarToFixList());
         return "cars/carsToBeFixed";
     }

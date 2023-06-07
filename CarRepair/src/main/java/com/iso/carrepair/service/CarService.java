@@ -29,7 +29,6 @@ public class CarService {
                 .sorted(Comparator.comparing(Car::getRepairDate).reversed())
                 .collect(Collectors.toList());
     }
-
     public void addCar (Car car){
         carList.add(car);
     }

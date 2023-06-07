@@ -29,7 +29,7 @@
                 <label>Kolor pojazdu:  </label>
                 <select th:field="*{carColor}" class="form-control selectpicker">
                     <option th:each="color : ${T(com.iso.carrepair.repository.CarColor).values()}" th:value="${color}" th:text="${color}"/>
-            </select>
+                </select>
             </div>
             <div class="form-group">
                 <label>Rok produkcji:</label>
@@ -37,7 +37,6 @@
                     <option th:each="i : ${#numbers.sequence(1950, 2023)}" th:value="${i}" th:text="${i}">
                 </select>
             </div>
-
             <p>
                 <input type="submit" value="Dodaj pojazd" class="btn btn-outline-success"/>
                 <input type="reset" value="Wyczyść tabelę" class="btn btn-outline-secondary"/>
