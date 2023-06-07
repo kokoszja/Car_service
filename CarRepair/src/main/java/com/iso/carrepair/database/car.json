@@ -89,6 +89,15 @@
       "acceptanceForService": "2023-06-07",
       "repairDate": "2023-06-07",
       "status": true
+    },
+    {
+      "licensePlate": "dwr",
+      "modelOfCar": "bmw",
+      "carColor": "BRĄZOWY",
+      "yearOfproduction": 1950,
+      "acceptanceForService": "2023-06-07",
+      "repairDate": "",
+      "status": false
     }
   ]
 }

@@ -14,7 +14,7 @@
         <th>Numer rejestracyjny</th>
         <th>Nazwa</th>
         <th>Kolor</th>
-        <th>Rocznik produkcji</th>
+        <th>Rocznik</th>
         <th>Data przyjęcia do serwisu</th>
         <th>Status</th>
     </tr>
@@ -23,7 +23,7 @@
     <tr th:each="car,iterStat: ${cars}">
         <td th:text="${iterStat.count}"></td>
         <td th:text="${car.getLicensePlate()}"></td>
-        <td th:text="${car.getMakeOfCar()}"></td>
+        <td th:text="${car.getModelOfCar()}"></td>
         <td th:text="${car.getCarColor()}"></td>
         <td th:text="${car.getYearOfproduction()}"></td>
         <td th:text="${car.getAcceptanceForService()}"></td>

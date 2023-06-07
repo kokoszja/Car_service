@@ -1,22 +1,18 @@
 package com.iso.carrepair.repository;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 
-import org.springframework.lang.NonNull;
-
-import javax.validation.constraints.*;
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class Car {
-    @NotEmpty
-    @Size(min = 5)
+    @Size(min = 3)
     private String licensePlate;
-    @NotEmpty
+    @Size(min = 3)
     private String modelOfCar;
-
     private String carColor;
     @Min(value = 1950)
     @Max(value = 2023)
-    @NotEmpty
     private Integer yearOfproduction;
     private String acceptanceForService;
     private String repairDate;
@@ -40,12 +36,12 @@ public class Car {
         this.licensePlate = licensePlate;
     }
 
-    public String getMakeOfCar() {
+    public String getModelOfCar() {
         return modelOfCar;
     }
 
-    public void setMakeOfCar(String makeOfCar) {
-        this.modelOfCar = makeOfCar;
+    public void setMakeOfCar(String modelOfCar) {
+        this.modelOfCar = modelOfCar;
     }
 
     public String getCarColor() {
@@ -105,7 +101,7 @@ public class Car {
     public String toString() {
         return "Car{" +
                 "licensePlate='" + licensePlate + '\'' +
-                ", makeOfCar='" + modelOfCar + '\'' +
+                ", modelOfCar='" + modelOfCar + '\'' +
                 ", carColor=" + carColor +
                 '}';
     }

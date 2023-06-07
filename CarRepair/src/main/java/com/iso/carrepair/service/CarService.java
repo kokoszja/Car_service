@@ -1,5 +1,4 @@
 package com.iso.carrepair.service;
-import com.google.gson.Gson;
 import com.iso.carrepair.exception.CarNotFoundException;
 import com.iso.carrepair.repository.Car;
 import com.iso.carrepair.repository.Cars;
@@ -12,10 +11,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class CarService {
-    private final Gson gson = new Gson();
     private FileService fileService;
     private List<Car> carList;
-    public CarService( FileService fileService) throws IOException {
+    public CarService( FileService fileService){
         this.fileService = fileService;
         this.carList = fileService.readCarFromJsonFile().getCars();
     }

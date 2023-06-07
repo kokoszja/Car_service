@@ -4,40 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Create of Route</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <div class="row">
-    <form action="#" th:action="@{/cars/toBeFixed}" th:object="${cars}" method="post" class="form">
-        <div class="col">
-            <label>Tablica rejestracyjna:</label>
-            <input type="text" th:field="*{licensePlate}" class="form-control" placeholder="Tablica rejestracyjna" required/>
+    <form action="#" th:action="@{/cars/toBeFixed}" th:object="${car}" method="post" class="form">
+        <div class="container">
+            <h2>Formularz dodawania pojazdu do serwisu</h2>
+            <div class="col">
+                <label>Tablica rejestracyjna:</label>
+                <input type="text" th:field="*{licensePlate}" class="form-control" placeholder="Tablica rejestracyjna" required/>
+                <p th:if="${#fields.hasErrors('modelOfCar')}" class="text-danger">Wpisz poprawną wartość (min 3 znaków)</p>
+            </div>
+            <div class="col">
+                <label>Marka pojazdu: </label>
+                <input type="text" th:field="*{modelOfCar}" class="form-control" placeholder="Marka" required/>
+                <p th:if="${#fields.hasErrors('modelOfCar')}" class="text-danger">Wpisz poprawną wartość (min 3 znaki)</p>
+            </div>
+            <div class="col">
+                <label>Kolor pojazdu:  </label>
+                <select th:field="*{carColor}">
+                    <option th:each="color : ${T(com.iso.carrepair.repository.CarColor).values()}" th:value="${color}" th:text="${color}"/>
+            </select>
+            </div>
+            <div class="col">
+                <label>Rok produkcji:</label>
+                <select th:field="*{yearOfproduction}">
+                    <option th:each="i : ${#numbers.sequence(1950, 2023)}" th:value="${i}" th:text="${i}">
+                </select>
+            </div>
+
+            <p>
+                <input type="submit" value="Dodaj pojazd" class="btn btn-outline-success"/>
+                <input type="reset" value="Wyczyść tabelę" class="btn btn-outline-secondary"/>
+                <a th:href="@{/cars}"><input type="button" value="Strona główna" class="btn btn-outline-primary"></a>
+            </p>
+            <p><input readonly type="hidden" th:field="*{acceptanceForService}" th:value="${car.getAcceptanceForService()}" /></p>
+            <p><input readonly type="hidden" th:field="*{repairDate}" th:value="${car.getRepairDate()}" /></p>
+            <p><input readonly type="hidden" th:field="*{status}" th:value="${car.isStatus()}" /></p>
         </div>
-        <div class="col">
-            <label>Marka pojazdu: </label>
-            <input type="text" th:field="*{makeOfCar}" class="form-control" placeholder="Marka" required/>
-            <span class="error" th:if="${#fields.hasErrors('makeOfCar')}" th:text="Wpisz wartość"></span>
-        </div>
-        <div class="col">
-            <label>Kolor pojazdu:  </label>
-            <select th:field="*{carColor}">
-            <option th:each="color : ${T(com.iso.carrepair.repository.CarColor).values()}" th:value="${color}" th:text="${color}"/>
-        </select>
-        </div>
-        <p><input readonly type="hidden" th:field="*{acceptanceForService}" th:value="${cars.getAcceptanceForService()}" /></p>
-        <p><input readonly type="hidden" th:field="*{repairDate}" th:value="${cars.getRepairDate()}" /></p>
-        <div class="col">
-            <label>Rok produkcji:</label>
-            <input type="text" th:field="*{yearOfproduction}" class="form-control" placeholder="Rok produkcji" required/>
-            <p  th:if="${#fields.hasErrors('yearOfproduction')}" th:class="${#fields.hasErrors('yearOfproduction')}? error">Invalid Age</p>
-        </div>
-        <p>
-            <input readonly type="hidden" th:field="*{status}" th:value="${cars.isStatus()}" />
-        </p>
-        <p>
-            <input type="submit" value="Dodaj pojazd" class="btn btn-outline-success"/>
-            <input type="reset" value="Wyczyść tabelę" class="btn btn-outline-secondary"/>
-            <a th:href="@{/cars}"><input type="button" value="Strona główna" class="btn btn-outline-primary"></a>
-        </p>
     </form>
 </div>
 </body>

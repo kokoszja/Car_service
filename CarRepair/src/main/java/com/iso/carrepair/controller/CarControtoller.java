@@ -5,15 +5,13 @@ import com.iso.carrepair.repository.CarColor;
 import com.iso.carrepair.repository.Cars;
 import com.iso.carrepair.service.CarService;
 import com.iso.carrepair.service.FileService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 @RequestMapping("/cars")
@@ -22,7 +20,6 @@ public class CarControtoller {
     private final FileService fileService;
     private final CarService carService;
     private final Cars cars;
-    List<Car> carList;
 
     public CarControtoller(FileService fileService, CarService carService, Cars cars) {
         this.fileService = fileService;
@@ -41,13 +38,13 @@ public class CarControtoller {
     }
     @GetMapping("/toBeFixed/addCar")
     public String createCarTable (Model model){
-        model.addAttribute("cars", new Car(null ,CarColor.BRĄZOWY.toString(), null, null, LocalDate.now().toString(), null, false));
+        model.addAttribute("car", new Car(null ,CarColor.BRĄZOWY.toString(), null, null, LocalDate.now().toString(), null, false));
         return "cars/addCar";
     }
     @PostMapping("/toBeFixed")
     public String addCar (@Valid @ModelAttribute Car car, BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()) {
-            return "redirect:/cars/toBeFixed/addCar";
+            return "cars/addCar";
         }
         carService.addCar(car);
         carService.saveCarToJson();
