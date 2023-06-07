@@ -2,7 +2,7 @@ package com.iso.carrepair.service;
 import com.google.gson.Gson;
 import com.iso.carrepair.exception.CarNotFoundException;
 import com.iso.carrepair.repository.Car;
-import com.iso.carrepair.repository.Cars;
+import com.iso.carrepair.repository.CarRepository;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -36,11 +36,11 @@ public class CarService {
         carList.add(car);
     }
     public void saveCarToJson() throws IOException {
-        Cars carsCopy = new Cars();
+        CarRepository carRepositoryCopy = new CarRepository();
         for (Car car : carList){
-            carsCopy.addCar(car);
+            carRepositoryCopy.addCar(car);
         }
-        fileService.writeCarToJson(carsCopy);
+        fileService.writeCarToJson(carRepositoryCopy);
     }
     public List<Car> findCarByPlateList(String test){
         return carList.stream()

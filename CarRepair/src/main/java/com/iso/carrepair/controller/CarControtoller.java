@@ -2,18 +2,22 @@ package com.iso.carrepair.controller;
 
 import com.iso.carrepair.repository.Car;
 import com.iso.carrepair.repository.CarColor;
-import com.iso.carrepair.repository.Cars;
+import com.iso.carrepair.repository.CarRepository;
 import com.iso.carrepair.service.CarService;
 import com.iso.carrepair.service.FileService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 @RequestMapping("/cars")
@@ -21,13 +25,13 @@ import java.util.List;
 public class CarControtoller {
     private final FileService fileService;
     private final CarService carService;
-    private final Cars cars;
+    private final CarRepository carRepository;
     List<Car> carList;
 
-    public CarControtoller(FileService fileService, CarService carService, Cars cars) {
+    public CarControtoller(FileService fileService, CarService carService, CarRepository carRepository) {
         this.fileService = fileService;
         this.carService = carService;
-        this.cars = cars;
+        this.carRepository = carRepository;
     }
     @GetMapping()
     public String carsMenu(){
@@ -41,13 +45,13 @@ public class CarControtoller {
     }
     @GetMapping("/toBeFixed/addCar")
     public String createCarTable (Model model){
-        model.addAttribute("cars", new Car(null ,CarColor.BRĄZOWY.toString(), null, null, LocalDate.now().toString(), null, false));
+        model.addAttribute("car", new Car(null ,CarColor.BRĄZOWY.toString(), null, null, LocalDate.now().toString(), null, false));
         return "cars/addCar";
     }
     @PostMapping("/toBeFixed")
     public String addCar (@Valid @ModelAttribute Car car, BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()) {
-            return "redirect:/cars/toBeFixed/addCar";
+            return "cars/addCar";
         }
         carService.addCar(car);
         carService.saveCarToJson();

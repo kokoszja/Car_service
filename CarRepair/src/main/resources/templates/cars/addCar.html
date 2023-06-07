@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="row">
-    <form action="#" th:action="@{/cars/toBeFixed}" th:object="${cars}" method="post" class="form">
+    <form action="#" th:action="@{/cars/toBeFixed}" th:object="${car}" method="post" class="form">
         <div class="col">
             <label>Tablica rejestracyjna:</label>
             <input type="text" th:field="*{licensePlate}" class="form-control" placeholder="Tablica rejestracyjna" required/>
@@ -23,15 +23,19 @@
             <option th:each="color : ${T(com.iso.carrepair.repository.CarColor).values()}" th:value="${color}" th:text="${color}"/>
         </select>
         </div>
-        <p><input readonly type="hidden" th:field="*{acceptanceForService}" th:value="${cars.getAcceptanceForService()}" /></p>
-        <p><input readonly type="hidden" th:field="*{repairDate}" th:value="${cars.getRepairDate()}" /></p>
+        <p><input readonly type="hidden" th:field="*{acceptanceForService}" th:value="${car.getAcceptanceForService()}" /></p>
+        <p><input readonly type="hidden" th:field="*{repairDate}" th:value="${car.getRepairDate()}" /></p>
         <div class="col">
             <label>Rok produkcji:</label>
             <input type="text" th:field="*{yearOfproduction}" class="form-control" placeholder="Rok produkcji" required/>
             <p  th:if="${#fields.hasErrors('yearOfproduction')}" th:class="${#fields.hasErrors('yearOfproduction')}? error">Invalid Age</p>
+
+<!--            <ul th:if="${#fields.hasErrors('*')}">-->
+<!--                <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>-->
+<!--            </ul>-->
         </div>
         <p>
-            <input readonly type="hidden" th:field="*{status}" th:value="${cars.isStatus()}" />
+            <input readonly type="hidden" th:field="*{status}" th:value="${car.isStatus()}" />
         </p>
         <p>
             <input type="submit" value="Dodaj pojazd" class="btn btn-outline-success"/>
@@ -39,6 +43,7 @@
             <a th:href="@{/cars}"><input type="button" value="Strona główna" class="btn btn-outline-primary"></a>
         </p>
     </form>
+
 </div>
 </body>
 </html>

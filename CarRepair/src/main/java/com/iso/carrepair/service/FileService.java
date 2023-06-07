@@ -2,12 +2,10 @@ package com.iso.carrepair.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.iso.carrepair.repository.Car;
-import com.iso.carrepair.repository.Cars;
+import com.iso.carrepair.repository.CarRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.util.Objects;
 
@@ -15,9 +13,9 @@ import java.util.Objects;
 public class FileService {
     private static final Path pathCarJsonFile = Path.of("CarRepair/src/main/java/com/iso/carrepair/database/car.json");
     public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    public void writeCarToJson(final Cars cars) throws IOException {
+    public void writeCarToJson(final CarRepository carRepository) throws IOException {
         FileWriter writer = new FileWriter(new File(pathCarJsonFile.toString()));
-        gson.toJson(cars,writer);
+        gson.toJson(carRepository,writer);
         writer.close();
         System.out.println("Zapisano w: " + pathCarJsonFile);
     }
@@ -31,13 +29,13 @@ public class FileService {
         }
     }
 
-    public Cars readCarFromJsonFile(){
-        Cars cars = readDataFromJsonFile(Cars.class, pathCarJsonFile);
-        if (Objects.nonNull(cars)) {
+    public CarRepository readCarFromJsonFile(){
+        CarRepository carRepository = readDataFromJsonFile(CarRepository.class, pathCarJsonFile);
+        if (Objects.nonNull(carRepository)) {
             System.out.println("Plik właściwie zaimportowany");
-            return cars;
+            return carRepository;
         }else {
-            return new Cars();
+            return new CarRepository();
         }
     }
 }

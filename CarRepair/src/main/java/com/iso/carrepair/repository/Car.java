@@ -1,9 +1,10 @@
 package com.iso.carrepair.repository;
 
-import org.springframework.lang.NonNull;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
-import javax.validation.constraints.*;
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class Car {
@@ -16,13 +17,12 @@ public class Car {
     private String carColor;
     @Min(value = 1950)
     @Max(value = 2023)
-    @NotEmpty
     private Integer yearOfproduction;
     private String acceptanceForService;
     private String repairDate;
     private boolean status;
 
-    public Car( String licensePlate,String carColor, String modelOfCar, Integer yearOfproduction, String acceptanceForService,String repairDate, boolean status) {
+    public Car(String licensePlate, String carColor, String modelOfCar, Integer yearOfproduction, String acceptanceForService, String repairDate, boolean status) {
         this.licensePlate = licensePlate;
         this.modelOfCar = modelOfCar;
         this.carColor = carColor;
