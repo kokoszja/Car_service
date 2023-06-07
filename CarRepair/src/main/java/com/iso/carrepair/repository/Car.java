@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Car {
-    private long id;
     @NotEmpty
     @Size(min = 5)
     private String licensePlate;
@@ -31,14 +30,6 @@ public class Car {
         this.acceptanceForService = acceptanceForService;
         this.repairDate = repairDate;
         this.status = status;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getLicensePlate() {
@@ -102,12 +93,12 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return id == car.id && yearOfproduction == car.yearOfproduction && status == car.status && Objects.equals(licensePlate, car.licensePlate) && Objects.equals(modelOfCar, car.modelOfCar) && carColor == car.carColor && Objects.equals(acceptanceForService, car.acceptanceForService) && Objects.equals(repairDate, car.repairDate);
+        return yearOfproduction == car.yearOfproduction && status == car.status && Objects.equals(licensePlate, car.licensePlate) && Objects.equals(modelOfCar, car.modelOfCar) && carColor == car.carColor && Objects.equals(acceptanceForService, car.acceptanceForService) && Objects.equals(repairDate, car.repairDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, licensePlate, modelOfCar, carColor, yearOfproduction, acceptanceForService, repairDate, status);
+        return Objects.hash(licensePlate, modelOfCar, carColor, yearOfproduction, acceptanceForService, repairDate, status);
     }
 
     @Override

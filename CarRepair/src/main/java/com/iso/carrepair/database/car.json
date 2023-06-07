@@ -1,7 +1,6 @@
 {
   "cars": [
     {
-      "id": 0,
       "licensePlate": "DWR1565C",
       "modelOfCar": "Volvo C4",
       "carColor": "BRĄZOWY",
@@ -11,7 +10,6 @@
       "status": true
     },
     {
-      "id": 0,
       "licensePlate": "DWR1665D",
       "modelOfCar": "Kia Ceed",
       "carColor": "SREBRNY",
@@ -21,7 +19,6 @@
       "status": false
     },
     {
-      "id": 0,
       "licensePlate": "DWR1565E",
       "modelOfCar": "VOLKSWAGEN T-ROC",
       "carColor": "SREBRNY",
@@ -31,7 +28,6 @@
       "status": true
     },
     {
-      "id": 0,
       "licensePlate": "DWR1245C",
       "modelOfCar": "CITROEN C4",
       "carColor": "NIEBIESKI",
@@ -41,7 +37,6 @@
       "status": false
     },
     {
-      "id": 0,
       "licensePlate": "DWR1245T",
       "modelOfCar": "TOYOTA COROLLA",
       "carColor": "BIAŁY",
@@ -51,7 +46,6 @@
       "status": false
     },
     {
-      "id": 0,
       "licensePlate": "DWR1565G",
       "modelOfCar": "MAZDA R8",
       "carColor": "CZERWONY",
@@ -61,7 +55,6 @@
       "status": false
     },
     {
-      "id": 0,
       "licensePlate": "DW1667U",
       "modelOfCar": "BMW E4",
       "carColor": "ZIELONY",
@@ -71,7 +64,6 @@
       "status": false
     },
     {
-      "id": 0,
       "licensePlate": "PWR4457u",
       "modelOfCar": "AUDI A5",
       "carColor": "SREBRNY",
@@ -81,7 +73,6 @@
       "status": false
     },
     {
-      "id": 0,
       "licensePlate": "TTR1653A",
       "modelOfCar": "AUDI A3",
       "carColor": "CZERWONY",
@@ -89,6 +80,15 @@
       "acceptanceForService": "2023-05-29",
       "repairDate": "",
       "status": false
+    },
+    {
+      "licensePlate": "PPW1897C",
+      "modelOfCar": "Aston Martin",
+      "carColor": "CZERWONY",
+      "yearOfproduction": 2016,
+      "acceptanceForService": "2023-06-07",
+      "repairDate": "2023-06-07",
+      "status": true
     }
   ]
 }
