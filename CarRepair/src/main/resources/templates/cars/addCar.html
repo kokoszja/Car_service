@@ -25,15 +25,15 @@
                 <input type="text" th:field="*{modelOfCar}" class="form-control" placeholder="Marka" required/>
                 <p th:if="${#fields.hasErrors('modelOfCar')}" class="text-danger">Wpisz poprawną wartość (min 3 znaki)</p>
             </div>
-            <div class="col">
+            <div class="form-group">
                 <label>Kolor pojazdu:  </label>
-                <select th:field="*{carColor}">
+                <select th:field="*{carColor}" class="form-control selectpicker">
                     <option th:each="color : ${T(com.iso.carrepair.repository.CarColor).values()}" th:value="${color}" th:text="${color}"/>
             </select>
             </div>
-            <div class="col">
+            <div class="form-group">
                 <label>Rok produkcji:</label>
-                <select th:field="*{yearOfproduction}">
+                <select th:field="*{yearOfproduction}" class="form-control selectpicker">
                     <option th:each="i : ${#numbers.sequence(1950, 2023)}" th:value="${i}" th:text="${i}">
                 </select>
             </div>

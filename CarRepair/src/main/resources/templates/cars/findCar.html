@@ -36,12 +36,6 @@
   </tbody>
 </table>
 <div>
-  <br>
-  <a th:href="@{/cars}" class="btn btn-success">
-    Menu główne
-  </a>
-</div>
-<div>
   <form th:action="@{/cars/find}">
     <p>Wpisz tablicę rejestracyjną:  <input type="text" name="keyword" th:value="${keyword}" />
       <input type="submit" value="Search" />
@@ -50,6 +44,15 @@
 </div>
 <div th:if="${cars.isEmpty()}">
   <p class="text-danger">LISTA JEST PUSTA. WPROWADŹ NUMER REJESTRACYJNY</p>
+</div>
+<div>
+  <br>
+  <a th:href="@{/cars}" class="btn btn-success">
+    Menu główne
+  </a>
+  <a th:href="@{/cars/toBeFixed/addCar}" class="btn btn-success">
+    Dodaj nowy pojazd
+  </a>
 </div>
 </body>
 </html>
