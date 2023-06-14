@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" type="text/css" />
+  <title>Cars</title>
+</head>
+<body>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Numer rejestracyjny</th>
+    <th>Nazwa</th>
+    <th>Kolor</th>
+    <th>Rocznik</th>
+    <th>Data przyjęcia do serwisu</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="car,iterStat: ${cars}">
+    <td th:text="${iterStat.count}"></td>
+    <td th:text="${car.getLicensePlate()}"></td>
+    <td th:text="${car.getModelOfCar()}"></td>
+    <td th:text="${car.getCarColor()}"></td>
+    <td th:text="${car.getYearOfproduction()}"></td>
+    <td th:text="${car.getAcceptanceForService()}"></td>
+    <td>
+      <a th:href="@{/cars/status/{plate}(plate=${car.licensePlate})}" class="btn btn-primary">
+        NAPRAWA
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div>
+  <form th:action="@{/cars/find}">
+    <p>Wpisz tablicę rejestracyjną:  <input type="text" name="keyword" th:value="${keyword}" />
+      <input type="submit" value="Search" />
+    </p>
+  </form>
+</div>
+<div th:if="${cars.isEmpty()}">
+  <p class="text-danger">LISTA JEST PUSTA. WPROWADŹ NUMER REJESTRACYJNY</p>
+</div>
+<div>
+  <br>
+  <a th:href="@{/cars/toBeFixed/addCar}" class="btn btn-success">
+    Dodaj nowy pojazd
+  </a>
+  <a th:href="@{/cars}" class="btn btn-success">
+    Menu główne
+  </a>
+</div>
+</body>
+</html>
